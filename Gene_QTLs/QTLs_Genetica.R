@@ -81,3 +81,26 @@ barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Calzado",ylab="Pro
         main="Calzado por sexo", names.arg=c("[23-24)","[24-25)","[25-26)","[26-27)","[27-28)","[28-29]"))
 barplot(h_H$density,space=c(3,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
 legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
+
+#Presión sistólica
+h_M=hist(D_mex$PS_Sis[M_mex],freq=F,breaks=c(90,95,100,105,110,115,120,125,130,135,140))
+h_H=hist(D_mex$PS_Sis[H_mex],freq=F,breaks=c(90,95,100,105,110,115,120,125,130,135,140))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Presión sistólica",ylab="Proporción de individuos",
+        main="Presión sistólica por sexo", names.arg=c("[90-95)","[95-100)","[100-105)","[105-110)","[110-115)","[115-120)"
+                                                       ,"[120-135)","[125-130)","[130-135)","[135-140]"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
+
+#Presión diastólica
+h_M=hist(D_mex$PS_Dia[M_mex],freq=F,breaks=c(40,45,50,55,60,65,70,75,80,85,90,95,100))
+h_H=hist(D_mex$PS_Dia[H_mex],freq=F,breaks=c(40,45,50,55,60,65,70,75,80,85,90,95,100))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Presión sistólica",ylab="Proporción de individuos",
+        main="Presión sistólica por sexo", names.arg=c("[40-45)","[45-50)","[50-55)","[55-60)","[60-65)","[65-70)"
+                                                       ,"[70-75)","[75-80)","[80-85)","[85-90)","[90-95)","[95,100]"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
+
