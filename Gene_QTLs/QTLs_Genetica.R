@@ -104,3 +104,13 @@ barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Presión sistólic
 barplot(h_H$density,space=c(3,2,2,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
 legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
 
+#"Bronceado"
+h_M=hist(D$PigmFrAvg[M]-D$PigmBrAvg[M],freq=F,breaks=c(0,2,4,6,8,10,12,14,16,18,20))
+h_H=hist(D$PigmFrAvg[H]-D$PigmBrAvg[H],freq=F,breaks=c(0,2,4,6,8,10,12,14,16,18,20))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),ylim=(c(0,.35)),space=2,xlab="Nivel de pigmentación",ylab="Proporción de individuos",
+        main="Diferencia de pigmentación entre frente y brazo", names.arg=c("[0-2)","[2-4)","[4-6)","[6-8)","[8-10)","[10-12)"
+                                                       ,"[12-14)","[14-16)","[16-18)","[18-20]"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
