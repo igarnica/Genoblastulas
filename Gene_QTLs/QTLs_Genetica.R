@@ -8,8 +8,7 @@
 #        Altura esta medida en metros y Calzado en cm
 
 rm(list=ls())
-setwd("~/Downloads")
-setwd("~/Documents/")
+setwd("~/Documents/Genoblastulas/Gene_QTLs")
 ####################################
 #    Internalizacion de datos      #
 ####################################
@@ -31,29 +30,35 @@ colnames(D) = c("Nombre","Sexo","Edad","Estado_Nat","Estado_Dura","Altura","Pigm
 ####################################
 #    ...     #
 ####################################
+#Graficar el nivel de melanina de acuerdo al sexo.
+#Separación en hombres y mujeres.
 num=seq(1,length(D[,1]))
 M=num[D$Sexo=="M"]
 H=num[D$Sexo=="H"]
 
-hist((D$PigmFrAvg[H]),xlim=c(35,60),probability=T,col=rgb(0.1, 0.9, 0.1, 0.3),main='Pigmentación en frente por sexo ("ambiental")'
-     ,xlab="Nivel de pigmentación",ylab="Densidad",breaks=8)
-hist(D$PigmFrAvg[M],freq=F,col=rgb(0.9, 0.1, 0.1, 0.3),add=T,breaks=8)
-legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
-
-#Graficar el nivel de melanina de acuerdo al sexo.
-#Como en el brazo estamos considerando el nivel "genético" (por no estar tan expuesto al sol), no sé incluirá las entradas
-#de extranjeros.
+#Datos de individuos no extranjeros, posteriormente se separa en hombres y mujeres no extranjeros.
 D_mex=D[-2,]
 num=seq(1,length(D_mex[,1]))
 M_mex=num[D_mex$Sexo=="M"]
 H_mex=num[D_mex$Sexo=="H"]
-#Se agruparán las mediciones por niveles
-#freq_PigBrAvg=matrix(data=0,nrow=2,ncol=5)
-#for i in 1:length(D[:1]){
-#  if(Pig)
-#}
-hist(D_mex$PigmBrAvg[M_mex],freq=F,xlim=c(34,50),col=rgb(0.9, 0.1, 0.1, 0.3),main='Pigmentación en brazos por sexo ("genético")'
-     ,xlab="Nivel de pigmentación",ylab="Densidad",breaks=8)
-hist(D_mex$PigmBrAvg[H_mex],freq=F,xlim=c(34,50),col=rgb(0.1, 0.9, 0.1, 0.3),add=T,breaks=8)
+
+#Pigmentación en frente
+h_M=hist(D$PigmFrAvg[M],freq=F,breaks=c(38,40,42,44,46,48,50,52,54,56,58))
+h_H=hist(D$PigmFrAvg[H],freq=F,breaks=c(38,40,42,44,46,48,50,52,54,56,58))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,ylim=c(0,.35),xlab="Nivel de pigmentación",ylab="Proporción de individuos",
+        main="Pigmentación en brazos por sexo", names.arg=c("38-40","40-42","42-44","44-46","46-48","48-50","50-52","52-54","54-56","56-58"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
 legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
-D
+
+#Pigmentación en brazos
+h_M=hist(D_mex$PigmBrAvg[M_mex],freq=F,breaks=c(34,36,38,40,42,44,46,48,50))
+h_H=hist(D_mex$PigmBrAvg[H_mex],freq=F,breaks=c(34,36,38,40,42,44,46,48,50))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Nivel de pigmentación",ylab="Proporción de individuos",
+        main="Pigmentación en brazos por sexo", names.arg=c("34-36","36-38","38-40","40-42","42-44","44-46","46-48","48-50"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
+
