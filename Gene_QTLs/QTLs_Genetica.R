@@ -72,3 +72,12 @@ barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Altura",ylab="Prop
 barplot(h_H$density,space=c(3,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
 legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
 
+#Calzado
+h_M=hist(D_mex$Calzado[M_mex],freq=F,breaks=c(23,24,25,26,27,28,29))
+h_H=hist(D_mex$Calzado[H_mex],freq=F,breaks=c(23,24,25,26,27,28,29))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Calzado",ylab="Proporción de individuos",
+        main="Calzado por sexo", names.arg=c("[23-24)","[24-25)","[25-26)","[26-27)","[27-28)","[28-29]"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
