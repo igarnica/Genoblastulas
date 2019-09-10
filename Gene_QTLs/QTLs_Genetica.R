@@ -62,3 +62,13 @@ barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Nivel de pigmentac
 barplot(h_H$density,space=c(3,2,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
 legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
 
+#Altura
+h_M=hist(D_mex$Altura[M_mex],freq=F,breaks=c(1.5,1.55,1.6,1.65,1.7,1.75,1.8,1.85))
+h_H=hist(D_mex$Altura[H_mex],freq=F,breaks=c(1.5,1.55,1.6,1.65,1.7,1.75,1.8,1.85))
+h_M$density=(h_M$density)*(1/sum(h_M$density))
+h_H$density=(h_H$density)*(1/sum(h_H$density))
+barplot(h_M$density,col=rgb(0.9, 0.1, 0.1, 0.3),space=2,xlab="Altura",ylab="Proporción de individuos",
+        main="Altura por sexo", names.arg=c("1.5-1.55","1.55-1.6","1.6-1.65","1.65-1.7","1.7-1.75","1.75-1.8","1.8-1.85"))
+barplot(h_H$density,space=c(3,2,2,2,2,2,2),col=rgb(0.1, 0.9, 0.1, 0.3),add=T)
+legend("topright", c("Mujeres", "Hombres"), col=c(rgb(0.9, 0.1, 0.1, 0.3),rgb(0.1, 0.9, 0.1, 0.3)), lwd=10)
+
